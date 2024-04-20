@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 public class OrderController {
-
     @Autowired
     private OrderService orderService;
 
@@ -24,7 +23,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/deleteOrderById")
-    public void deleteOrderById(@RequestParam Long id){
+    public void deleteOrderById(@RequestParam int id){
         orderService.deleteOrderById(id);
     }
 }

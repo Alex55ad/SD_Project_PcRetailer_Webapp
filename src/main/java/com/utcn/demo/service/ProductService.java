@@ -24,7 +24,7 @@ public class ProductService {
         return this.productRepository.save(product);
     }
 
-    public void deleteProductById(Long id) {
+    public void deleteProductById(int id) {
         if(this.productRepository.findById(id).isEmpty())
             throw new RuntimeException("User not found");
         else

@@ -2,15 +2,16 @@ package com.utcn.demo.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name ="product")
+@Table(name ="Products")
 public class Product {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "name")
     private String name;
@@ -19,38 +20,31 @@ public class Product {
     private List<OrderProduct> orderProductList;
 
     @Column(name="price")
-    private double price;
+    private BigDecimal price;
 
     @Column(name = "stock")
     private int stock;
 
-    @Column(name = "specifications")  // New column for specifications
-    private String specifications;
+    @Column(name = "description")  // New column for specifications
+    private String description;
 
     public Product() {
     }
 
-    public Product(Long id, String name, double price, int stock, String specifications) {
+    public Product(int id, String name, List<OrderProduct> orderProductList, BigDecimal price, int stock, String description) {
         this.id = id;
         this.name = name;
+        this.orderProductList = orderProductList;
         this.price = price;
         this.stock = stock;
-        this.specifications = specifications;
+        this.description = description;
     }
 
-    public String getSpecifications() {
-        return specifications;
-    }
-
-    public void setSpecifications(String specifications) {
-        this.specifications = specifications;
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -62,11 +56,19 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public List<OrderProduct> getOrderProductList() {
+        return orderProductList;
+    }
+
+    public void setOrderProductList(List<OrderProduct> orderProductList) {
+        this.orderProductList = orderProductList;
+    }
+
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -76,5 +78,13 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

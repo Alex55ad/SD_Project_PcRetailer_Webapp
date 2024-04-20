@@ -2,46 +2,52 @@ package com.utcn.demo.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name ="order")
+@Table(name ="Orders")
 public class Order {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "order")
     private List<OrderProduct> orderProductList;
 
-    @Column(name="date")
-    private String date;
+    @Column(name="order_date")
+    private LocalDateTime date;
 
-    @Column(name = "address")
-    private int address;
+    @Column(name = "total_amount")
+    private BigDecimal totalAmount;
 
-    @Column(name = "contact")
-    private String contact;
+    @Column(name = "status")
+    private String status;
 
     public Order() {
-
     }
 
-    public Long getId() {
+    public Order(int id, User user, List<OrderProduct> orderProductList, LocalDateTime date, BigDecimal totalAmount, String status) {
+        this.id = id;
+        this.user = user;
+        this.orderProductList = orderProductList;
+        this.date = date;
+        this.totalAmount = totalAmount;
+        this.status = status;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public Order(Long id, User user, String date, int address, String contact) {
+    public void setId(int id) {
         this.id = id;
-        this.user = user;
-        this.date = date;
-        this.address = address;
-        this.contact = contact;
     }
 
     public User getUser() {
@@ -52,31 +58,35 @@ public class Order {
         this.user = user;
     }
 
-    public void setId(Long oid) {
-        this.id = oid;
+    public List<OrderProduct> getOrderProductList() {
+        return orderProductList;
     }
 
-    public String getDate() {
+    public void setOrderProductList(List<OrderProduct> orderProductList) {
+        this.orderProductList = orderProductList;
+    }
+
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
-    public int getAddress() {
-        return address;
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setAddress(int address) {
-        this.address = address;
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public String getContact() {
-        return contact;
+    public String getStatus() {
+        return status;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

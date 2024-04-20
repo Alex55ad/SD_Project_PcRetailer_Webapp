@@ -9,31 +9,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-
+@RequestMapping("/orderProducts")
 @RestController
 public class OrderProductController {
-
     @Autowired
     private OrderProductService orderProductService;
 
-    @GetMapping("/getAllOrderProducts")
+    @GetMapping("/getAll")
     public List<OrderProduct> retrieveAllOrderProducts(){
         return orderProductService.retrieveOrderProducts();
     }
 
-    @PostMapping("/insertOrderProduct")
+    @PostMapping("/insert")
     public OrderProduct insertOrderProduct(@RequestBody OrderProduct orderProduct){
         return orderProductService.insertOrderProduct(orderProduct);
     }
-
-    @DeleteMapping("/deleteOrderProductById")
-    public void deleteOrderProductById(@RequestParam Long id){
+    @DeleteMapping("/deleteById")
+    public void deleteOrderProductById(@RequestParam int id){
         orderProductService.deleteOrderProductById(id);
-    }
-
-    @PostMapping("/createOrderProducts")
-    public void createOrderProducts(@RequestBody Order order, @RequestBody Map<Product, Integer> productQuantities) {
-        orderProductService.createOrderProducts(order, productQuantities);
     }
 
 }

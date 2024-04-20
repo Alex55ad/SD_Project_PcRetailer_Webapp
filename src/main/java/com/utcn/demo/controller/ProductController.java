@@ -6,25 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@RequestMapping("/products")
 @RestController
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/getAllProducts")
+    @GetMapping("/getAll")
     public List<Product> retrieveAllProducts(){
         return productService.retrieveProducts();
     }
 
-    @PostMapping("/insertProduct")
+    @PostMapping("/insert")
     public Product insertProduct(@RequestBody Product product){
         return productService.insertProduct(product);
     }
 
-    @DeleteMapping("/deleteProductById")
-    public void deleteProductById(@RequestParam Long id){
+    @DeleteMapping("/delete")
+    public void deleteProductById(@RequestParam int id){
         productService.deleteProductById(id);
     }
 }

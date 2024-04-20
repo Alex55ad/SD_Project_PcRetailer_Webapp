@@ -25,7 +25,7 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    public void deleteUserById(Long id) {
+    public void deleteUserById(int id) {
             if(userRepository.findById(id).isEmpty())
                 throw new RuntimeException("User not found");
             else

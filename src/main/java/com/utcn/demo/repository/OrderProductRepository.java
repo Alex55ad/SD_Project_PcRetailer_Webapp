@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderProductRepository extends JpaRepository<OrderProduct, Long> {
+public interface OrderProductRepository extends JpaRepository<OrderProduct, Integer> {
     OrderProduct findByOrderAndProduct(Order order, Product product);
 }

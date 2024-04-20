@@ -24,34 +24,11 @@ public class OrderProductService {
         return this.orderProductRepository.save(orderProduct);
     }
 
-    public void deleteOrderProductById(Long id) {
+    public void deleteOrderProductById(int id) {
         if(this.orderProductRepository.findById(id).isEmpty())
             throw new RuntimeException("User not found");
         else
             this.orderProductRepository.deleteById(id);
-    }
-
-    @Transactional
-    public void createOrderProducts(Order order, Map<Product, Integer> productQuantities) {
-        for (Map.Entry<Product, Integer> entry : productQuantities.entrySet()) {
-            Product product = entry.getKey();
-            int quantity = entry.getValue();
-
-            // Check if an order product entry already exists for the given product and order
-            OrderProduct existingOrderProduct = orderProductRepository.findByOrderAndProduct(order, product);
-            if (existingOrderProduct != null) {
-                // If an entry already exists, update the quantity
-                existingOrderProduct.setQuantity(existingOrderProduct.getQuantity() + quantity);
-                orderProductRepository.save(existingOrderProduct);
-            } else {
-                // If no entry exists, create a new one
-                OrderProduct newOrderProduct = new OrderProduct();
-                newOrderProduct.setOrder(order);
-                newOrderProduct.setProduct(product);
-                newOrderProduct.setQuantity(quantity);
-                orderProductRepository.save(newOrderProduct);
-            }
-        }
     }
 
 }

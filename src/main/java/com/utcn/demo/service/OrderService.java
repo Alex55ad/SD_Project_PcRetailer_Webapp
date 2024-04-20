@@ -19,7 +19,7 @@ public class OrderService {
         return this.orderRepository.save(order);
     }
 
-    public void deleteOrderById(Long id) {
+    public void deleteOrderById(int id) {
         if(this.orderRepository.findById(id).isEmpty())
             throw new RuntimeException("User not found");
         else

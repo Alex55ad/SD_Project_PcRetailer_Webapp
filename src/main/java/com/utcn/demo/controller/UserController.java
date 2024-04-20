@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("/users")
 @RestController
 public class UserController {
 
@@ -15,18 +16,18 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/getAllUsers")
+    @GetMapping("/getAll")
     public List<User> retrieveAllUsers(){
         return userService.retrieveUsers();
     }
 
-    @PostMapping("/insertUser")
+    @PostMapping("/insert")
     public User insertUser(@RequestBody User user){
         return userService.insertUser(user);
     }
 
-    @DeleteMapping("/deleteUserById")
-    public void deleteUserById(@RequestParam Long id){
+    @DeleteMapping("/deleteById")
+    public void deleteUserById(@RequestParam int id){
         userService.deleteUserById(id);
     }
 
@@ -41,7 +42,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/createUser")
+    @PostMapping("/create")
     public User createUser(@RequestBody User user){
         return userService.createUser(user);
     }

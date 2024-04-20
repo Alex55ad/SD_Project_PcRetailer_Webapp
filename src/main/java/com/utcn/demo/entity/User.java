@@ -3,11 +3,11 @@ package com.utcn.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name ="user")
+@Table(name ="UserAccounts")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name ="username")
     private String username;
@@ -18,25 +18,25 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "creation_date", nullable = false)
-    private String creationDate;
+    @Column(name = "account_type")
+    private String type;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, String email, String creationDate) {
+    public User(int id, String username, String password, String email, String type) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.creationDate = creationDate;
+        this.type = type;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,11 +64,11 @@ public class User {
         this.email = email;
     }
 
-    public String getCreationDate() {
-        return creationDate;
+    public String getType() {
+        return type;
     }
 
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
+    public void setType(String type) {
+        this.type = type;
     }
 }
